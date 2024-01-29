@@ -23,7 +23,8 @@ public class MetricsController {
     @GetMapping("/hello/{name}/tagged")
     public String helloTagged(@PathVariable("name") String name) {
         meterRegistry.counter("marshmallow.hello.tagged",
-            "name", name
+            "name", name,
+            "other_tag", "other_value"
         ).increment();
         annotatedMetricsService.doSomething();
         return "hello " + name;
